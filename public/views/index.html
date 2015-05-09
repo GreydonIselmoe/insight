@@ -15,18 +15,20 @@
             <tr>
               <th translate>Height</th>
               <th translate>Age</th>
+	      
               <th class="text-right"><span class="ellipsis" translate>Transactions</span></th>
-              <th class="text-right hidden-xs"><span class="ellipsis" translate>Mined by</span></th>
+              <th class="text-right hidden-xs"><span class="ellipsis" translate>Mined by</span></th> 
               <th class="text-right" translate>Size</th>
             </tr>
           </thead>
           <tbody>
           <tr data-ng-show="!blocks.length"><td colspan="4" translate>Waiting for blocks...</td></tr>
-          <tr class="fader" data-ng-repeat='b in blocks'>
+          <tr class="fader" ng-repeat='b in blocks'>
             <td>
               <a href="/block/{{b.hash}}">{{b.height}}</a>
             </td>
             <td><span class="ellipsis">{{humanSince(b.time)}}</span></td>
+	    
             <td class="text-right">{{b.txlength}}</td>
             <td class="text-right hidden-xs"><a href="{{b.poolInfo.url}}" title="{{b.poolInfo.poolName}}" target="_blank" data-ng-show="b.poolInfo">{{b.poolInfo.poolName}}</a></td>
             <td class="text-right">{{b.size}}</td>
@@ -37,7 +39,7 @@
           <a href="/blocks" class="btn btn-default" translate>See all blocks</a>
         </div>
 
-        <h2 translate>Latest Transactions</h2>
+        <h2 translate>Latest Transactions {{b.size}}</h2>
 
         <table class="table table-hover table-striped" style="table-layout: fixed;">
           <thead>
@@ -52,7 +54,7 @@
             <td>
               <a class="ellipsis" href="/tx/{{tx.txid}}">{{tx.txid}}</a>
             </td>
-            <td class="text-right"><span class="ellipsis">{{$root.currency.getConvertion(tx.valueOut) || tx.valueOut + ' BTC'}}</span></td>
+            <td class="text-right"><span class="ellipsis">{{$root.currency.getConvertion(tx.valueOut) || tx.valueOut + ' CRE'}}</span></td>
           </tr>
           </tbody>
         </table>
@@ -61,19 +63,32 @@
 
       <div class="col-xs-12 col-md-4 col-gray">
         <h2 translate>About</h2>
-        <p translate><strong>insight</strong>  is an <a href="http://live.insight.is/"
-          target="_blank">open-source Bitcoin blockchain explorer</a> with complete REST and websocket APIs that can be used for writing web wallets and other apps  that need more advanced blockchain queries than provided by bitcoind RPC.  Check out the <a href="http://github.com/bitpay/insight" target="_blank">source code</a>.</p>
-        <p translate><strong>insight</strong> is still in development, so be sure to report any bugs and provide feedback for improvement at our <a href="https://github.com/bitpay/insight/issues" target="_blank">github issue tracker</a>.</p>
-        <div id="powered" class="row">
-          <div class="powered-text">
-            <small class="text-muted" translate>Powered by</small>
-          </div>
-          <a href="http://bitcore.io" target="_blank" class="bitcore" title="Bitcore"></a>
-          <a href="http://angularjs.org" target="_blank" class="angularjs" title="AngularJS"></a>
-          <a href="https://code.google.com/p/leveldb/" target="_blank" class="leveldb" title="LevelDB"></a>
-          <a href="http://nodejs.org" target="_blank" class="nodejs" title="NodeJs"></a>
-        </div>
-      </div> <!-- END OF COL-3 -->
-    </div>
-  </div>
+            </p>  <a href=http://credits-currency.org/><strong><b>Credits [CRE]</b></strong></a> is the first successful "soft" side-chain implementation coin, built off of the Bitcoin Blockchain. </p> <p>It features a never before seen <a href=http://credits-currency.org/viewtopic.php?f=24&t=755> Proof of Work / Proof of Deposit mining system </a> which allows miners to prepare mining deposits in order to achieve more efficient mining. This feature insures that not only raw hashing power alone can be used to a miners advantage, and after block 33000 full migration to the Proof of Deposit system will occur and the network will require Credits [CRE] mining deposits in order to achieve maximum mining efficiency. </p>
+ 
+<p><strong>Credits [CRE] </strong> is an open sourced coin and all source code is available via github.com: <a href=https://github.com/credits-currency/credits>Credits [CRE] source code</a></p>
+ <p>
+<i>This block explorer is still in development, we are working on making the recent transactions functional, as well as providing address-lookup capabilities.</i> 
+ </p>
+
+<p>  {{blocks.allblocks[0]}}</p>
+<table class="table table-hover table-striped" style="table-layout: fixed"> 
+  <thead>
+	<tr>
+  	  <th>Block height  </th> <th> Block time</th> <th> Average block time (last 5) </th>
+	</tr>
+	
+  </thead>
+  <tbody>
+	<tr data-ng-repeat='b in blocks'> 
+	  <td> {{b.height+1}} </td>
+	
+	<td > <p font-size="3"><small>{{b.blockTimeSum}} {{b.timeType}}</small>	</p>           	     </td>	<td> <small><b>{{b.averageTime5}}</b></small> </td>
+		
+			</tr>
+
+
+</tbody> </table>
+
+</div>
+  
 </section>

@@ -31,6 +31,17 @@ angular.module('insight.blocks').controller('BlocksController',
     }
   });
 
+  $scope.avg = function() {
+     //var sum=0;
+    // for (var i=0;i<6 && i<$routeParams.blocks.length; i++) {
+    //      sum=sum+blocks[i].time;
+   //  }
+   //  if i=0 return "";
+//return sum/i;
+
+return 4;
+};
+
   $scope.openCalendar = function($event) {
     $event.preventDefault();
     $event.stopPropagation();
@@ -38,12 +49,18 @@ angular.module('insight.blocks').controller('BlocksController',
     $scope.opened = true;
   };
 
+
+
   $scope.humanSince = function(time) {
     var m = moment.unix(time).startOf('day');
     var b = moment().startOf('day');
     return m.max().from(b);
   };
 
+	$rootScope.getBlock.avg = function(){
+
+	return "test";
+} ;
 
   $scope.list = function() {
     $scope.loading = true;

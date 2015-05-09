@@ -1,7 +1,7 @@
 'use strict';
 
 var TRANSACTION_DISPLAYED = 10;
-var BLOCKS_DISPLAYED = 5;
+var BLOCKS_DISPLAYED = 10;
 
 angular.module('insight.system').controller('IndexController',
   function($scope, Global, getSocket, Blocks) {
@@ -42,6 +42,16 @@ angular.module('insight.system').controller('IndexController',
       var m = moment.unix(time);
       return m.max().fromNow();
     };
+
+	$scope.avg = function() {
+     var sum=0;
+     for (var i=0;i<6 && i<$routeParams.blocks.length; i++) {
+          sum=sum+blocks[i].time;
+     }
+     if i=0 return "";
+     return sum/i;
+	
+};
 
     $scope.index = function() {
       _getBlocks();

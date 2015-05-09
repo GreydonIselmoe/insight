@@ -1,0 +1,7 @@
+'use strict';
+
+var test = function(num){
+
+	var tester = num + 1;
+	return tester;
+};
